@@ -72,6 +72,7 @@ function MeuComponente() {
   return (
     <div>
       <Button>Botão Padrão</Button>
+      <Button variant="secondary">Botão Secundário</Button>
       <Button variant="outline">Botão Outline</Button>
       <Button variant="destructive">Botão Destrutivo</Button>
     </div>
