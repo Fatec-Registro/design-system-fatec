@@ -1,0 +1,19 @@
+# Arquivos de desenvolvimento (não publicar)
+src/App.tsx
+src/main.tsx
+index.html
+public
+src/assets
+
+# Arquivos de build
+node_modules
+dist/*.map
+
+# Configurações de desenvolvimento
+.vscode
+.idea
+*.log
+tsconfig.app.json
+vite.config.ts
+eslint.config.js
+components.json
