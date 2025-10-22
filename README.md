@@ -35,9 +35,6 @@ Verifique se o build foi concluído com sucesso e os arquivos foram gerados em `
 
 ```bash
 npm publish
-
-# Ou se for um scoped package
-npm publish --access public
 ```
 
 ## 🚀 Como usar em outro projeto:
@@ -46,7 +43,6 @@ npm publish --access public
 
 ```bash
 npm install design-system-fatec
-# Ou o nome que você escolheu no package.json
 ```
 
 ### 2. Importe o CSS (OBRIGATÓRIO)
