@@ -1,15 +1,16 @@
 import * as React from "react"
-import { Button as ButtonShadcn  } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import {
+  Button as ButtonBase,
+  buttonVariants as buttonVariantsBase,
+} from "@/components/ui/button";
+import type { VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-interface buttonProps extends React.ComponentProps<typeof ButtonShadcn> {
-  variant?:
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | "link";
+type ButtonVariant = VariantProps<typeof buttonVariantsBase>["variant"];
+
+interface ButtonProps
+  extends Omit<React.ComponentProps<typeof ButtonBase>, "variant"> {
+  variant?: ButtonVariant;
 }
 
 export function Button({
@@ -17,9 +18,9 @@ export function Button({
   className,
   variant = "default",
   ...props
-}: buttonProps) {
+}: ButtonProps) {
   return (
-    <ButtonShadcn
+    <ButtonBase
       variant={variant}
       className={cn(
         variant === "default" &&
@@ -32,6 +33,6 @@ export function Button({
       {...props}
     >
       {children}
-    </ButtonShadcn>
+    </ButtonBase>
   );
 }
