@@ -19,7 +19,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
-  --color-primary-hover: #d60505;
+  --color-primary-hover: hsla(0, 100%, 25%, 1);
   --color-secondary: #005c6d;
   --color-success: #3acf1f;
   --color-warning: #b78718;
@@ -58,7 +58,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #b20000;
+  --primary: hsla(0, 100%, 35%, 1);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
