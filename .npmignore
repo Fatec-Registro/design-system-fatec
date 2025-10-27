@@ -17,3 +17,8 @@ tsconfig.app.json
 vite.config.ts
 eslint.config.js
 components.json
+
+# Storybook (documentação de desenvolvimento)
+.storybook
+src/stories
+storybook-static

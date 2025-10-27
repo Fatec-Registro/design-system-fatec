@@ -1,0 +1,33 @@
+name: Documentação Storybook no GitHub Pages
+
+on:
+  # Evento para executar o workflow
+  push:
+    branches:
+      - 'main' # Substitua pela branch da qual você quer fazer o deploy
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Lista de jobs
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Passos do job
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Configurar Node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      #👇 Adicionar build do Storybook e deploy para GitHub Pages como um passo no workflow
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: npm ci
+          build_command: npm run build-storybook
+          path: storybook-static
+          checkout: false
