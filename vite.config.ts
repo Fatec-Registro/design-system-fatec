@@ -14,63 +14,81 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react(), tailwindcss(), dts({
-    tsconfigPath: resolve(__dirname, "tsconfig.build.json"),
-    entryRoot: "src",
-    outDir: "dist",
-    rollupTypes: true,
-    insertTypesEntry: true
-  })],
+  plugins: [
+    react(),
+    tailwindcss(),
+    dts({
+      tsconfigPath: resolve(__dirname, "tsconfig.build.json"),
+      entryRoot: "src",
+      outDir: "dist",
+      rollupTypes: true,
+      insertTypesEntry: true,
+    }),
+  ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src")
-    }
+      "@": resolve(__dirname, "./src"),
+    },
   },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "DesignSystemFatec",
-      fileName: format => `design-system-fatec.${format}.js`,
-      formats: ["es", "cjs"]
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      input: {
+        index: resolve(__dirname, "src/index.ts"),
+        icons: resolve(__dirname, "src/icons.ts"),
+        "layout/index": resolve(__dirname, "src/layout/index.ts"),
+        "navigation/index": resolve(__dirname, "src/navigation/index.ts"),
+        "form/index": resolve(__dirname, "src/form/index.ts"),
+        "data-display/index": resolve(__dirname, "src/data-display/index.ts"),
+      },
+      external: ["react", "react-dom", "lucide-react"],
       output: {
         globals: {
           react: "React",
-          "react-dom": "ReactDOM"
+          "react-dom": "ReactDOM",
         },
+        // Emite arquivos por entrada: index.es.js, icons.es.js, layout/index.es.js, etc.
+        entryFileNames: "[name].[format].js",
         // Garante que o CSS seja gerado como styles.css
-        assetFileNames: assetInfo => {
+        assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.endsWith(".css")) {
             return "styles.css";
           }
           return assetInfo.name || "assets/[name][extname]";
-        }
-      }
-    }
+        },
+      },
+    },
   },
   test: {
-    projects: [{
-      extends: true,
-      plugins: [
-      // The plugin will run tests for the stories defined in your Storybook config
-      // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-      storybookTest({
-        configDir: path.join(dirname, '.storybook')
-      })],
-      test: {
-        name: 'storybook',
-        browser: {
-          enabled: true,
-          headless: true,
-          provider: playwright({}),
-          instances: [{
-            browser: 'chromium'
-          }]
+    projects: [
+      {
+        extends: true,
+        plugins: [
+          // The plugin will run tests for the stories defined in your Storybook config
+          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+          storybookTest({
+            configDir: path.join(dirname, ".storybook"),
+          }),
+        ],
+        test: {
+          name: "storybook",
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright({}),
+            instances: [
+              {
+                browser: "chromium",
+              },
+            ],
+          },
+          setupFiles: [".storybook/vitest.setup.ts"],
         },
-        setupFiles: ['.storybook/vitest.setup.ts']
-      }
-    }]
-  }
+      },
+    ],
+  },
 });

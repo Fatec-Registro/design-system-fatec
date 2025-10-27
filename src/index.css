@@ -1,3 +1,6 @@
+/* Importa a fonte Roboto do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -47,7 +50,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: 'Roboto', 'sans-serif';
+  --font-sans: 'Roboto', sans-serif;
 }
 
 :root {
@@ -124,9 +127,27 @@
     border-color: var(--color-border);
     outline-color: oklch(from var(--color-ring) l c h / 50%);
   }
+  html {
+    font-size: 16px;
+    font-family: var(--font-sans);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: 16px;
+  }
+  * {
+    font-family: inherit;
+  }
+  button,
+  input,
+  textarea,
+  select,
+  div,
+  span,
+  p,
+  a {
+    font-size: inherit;
   }
 }

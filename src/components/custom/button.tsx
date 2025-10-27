@@ -23,11 +23,11 @@ export function Button({
     <ButtonBase
       variant={variant}
       className={cn(
-        variant === "default" &&
-          "bg-primary hover:bg-primary-hover text-white font-medium",
+        variant === "default" && "bg-primary hover:bg-primary-hover text-white",
         variant === "secondary" &&
-          "bg-secondary hover:bg-secondary/90 text-white font-medium",
+          "bg-secondary hover:bg-secondary/90 text-white",
         "focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40",
+        "text-md font-normal px-4 py-2 rounded-sm",
         className
       )}
       {...props}
