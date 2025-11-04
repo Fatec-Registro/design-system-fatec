@@ -30,9 +30,9 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
+    "lucide-react": ">=0.546.0",
     "react": ">=18",
-    "react-dom": ">=18",
-    "lucide-react": ">=0.546.0"
+    "react-dom": ">=18"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
