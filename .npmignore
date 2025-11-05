@@ -22,3 +22,9 @@ components.json
 .storybook
 src/stories
 storybook-static
+
+# Docker (infraestrutura de desenvolvimento)
+Dockerfile
+docker-compose.yml
+.dockerignore
+DOCKER.md
