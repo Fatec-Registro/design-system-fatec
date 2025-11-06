@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: design-system-fatec
+    ports:
+      - "5173:5173"  # Servidor de desenvolvimento Vite
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # Habilita polling para hot-reload funcionar no Docker
+    command: npm run dev
+    stdin_open: true
+    tty: true
+
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: design-system-fatec-storybook
+    ports:
+      - "6006:6006"  # Storybook exposto na porta padrão 6006
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # Habilita polling para hot-reload funcionar no Docker
+      - BROWSER=none  # Desabilita abertura automática do navegador
+    command: npx storybook dev -p 6006 --no-open --disable-telemetry
+    stdin_open: true
+    tty: true
