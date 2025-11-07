@@ -74,12 +74,30 @@ export const WithHTMLContent: Story = {
   argTypes: {
     contentText: { table: { disable: true } },
   },
+  parameters: {
+    docs: {
+      description: {
+        story: ` Exemplo que demonstra que o **Popover** pode renderizar conteúdo HTML dinâmico. O campo *contentHTML* pode ser editado nos Controls para visualizar diferentes estruturas de marcação.`,
+      },
+      source: {
+        code: `
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button>Abrir Popover</Button>
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <!-- HTML controlado via Controls -->
+                  </PopoverContent>
+                </Popover>
+        `,
+      },
+    },
+  },
   render: (args: any) => (
     <Popover>
       <PopoverTrigger asChild>
         <Button>{args.buttonLabel}</Button>
       </PopoverTrigger>
-
       <PopoverContent>
         <div
           dangerouslySetInnerHTML={{
@@ -90,5 +108,6 @@ export const WithHTMLContent: Story = {
     </Popover>
   ),
 };
+
 
 
