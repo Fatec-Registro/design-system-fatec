@@ -7,6 +7,7 @@ type PopoverProps = ComponentProps<typeof Popover>;
 
 type PopoverStoryArgs = PopoverProps & {
   buttonLabel: string;
+  contentText: string;
   contentHTML: string;
 };
 
@@ -23,8 +24,12 @@ const meta: Meta<typeof Popover> = {
       control: { type: "text" },
       description: "Texto exibido no botão que abre o popover",
     },
+    contentText: {
+      control: { type: "text" },
+      description: "Texto exibido ao abrir o popover",
+    },
     contentHTML: {
-      control: { type: "textarea" },
+      control: { type: "text" },
       description: "HTML renderizado dentro do PopoverContent",
     },
   } as any,
@@ -34,15 +39,20 @@ export default meta;
 
 type Story = StoryObj<PopoverStoryArgs>;
 
-export const Default = {
-  render: () => (
+export const Default: StoryObj<PopoverStoryArgs> = {
+  args: {
+    buttonLabel: "Open Popover",
+    contentText: "Conteúdo do Popover",
+  },
+  argTypes: {
+    contentHTML: { table: { disable: true } },
+  },
+  render: (args: any) => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button>Abrir Popover</Button>
+        <Button>{args.buttonLabel}</Button>
       </PopoverTrigger>
-      <PopoverContent>
-        Este é um popover simples.
-      </PopoverContent>
+      <PopoverContent>{args.contentText}</PopoverContent>
     </Popover>
   ),
 };
@@ -61,7 +71,10 @@ export const WithHTMLContent: Story = {
       </ul>
     `,
   },
-  render: (args) => (
+  argTypes: {
+    contentText: { table: { disable: true } },
+  },
+  render: (args: any) => (
     <Popover>
       <PopoverTrigger asChild>
         <Button>{args.buttonLabel}</Button>
@@ -77,3 +90,5 @@ export const WithHTMLContent: Story = {
     </Popover>
   ),
 };
+
+
