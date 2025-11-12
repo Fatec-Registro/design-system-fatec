@@ -1,15 +1,26 @@
-import { BookCheck, Megaphone, SquareLibrary, Settings, GraduationCap, BadgeCheck, ListTodo } from "lucide-react"
+"use client";
 
+import * as React from "react";
+
+import {
+  BookCheck,
+  Megaphone,
+  SquareLibrary,
+  GraduationCap,
+  BadgeCheck,
+  ListTodo,
+  FileBadge,
+  ExternalLinkIcon,
+} from "lucide-react";
+
+import { NavMain } from "@/components/custom/sidebar/nav-main";
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar";
 
 // Menu items.
 const items = [
@@ -46,32 +57,81 @@ const items = [
   {
     title: "QTE",
     url: "#",
-    icon: Settings,
+    icon: FileBadge,
   },
-]
+];
 
-export function AppSidebar() {
+const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "",
+  },
+  navMain: [
+    {
+      title: "Aplicações",
+      url: "#",
+      icon: GraduationCap,
+      isActive: true,
+      items: [
+        {
+          title: "Academies Hub",
+          url: "#",
+        },
+        {
+          title: "Anúncios",
+          url: "#",
+        },
+        {
+          title: "Avaliação Integradora",
+          url: "#",
+        },
+        {
+          title: "Biblioteca",
+          url: "#",
+        },
+        {
+          title: "Emissão de Certificados",
+          url: "#",
+        },
+        {
+          title: "PACE",
+          url: "#",
+        },
+        {
+          title: "QTE",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Meu Perfil",
+      url: "#",
+      icon: GraduationCap,
+    },
+    {
+      title: "Gerenciar Usuários",
+      url: "#",
+      icon: GraduationCap,
+    },
+    {
+      title: "Sair",
+      url: "#",
+      icon: ExternalLinkIcon,
+    },
+  ],
+};
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="w-72">
+    <Sidebar {...props}>
+      <SidebarHeader>{/* <TeamSwitcher teams={data.teams} /> */}</SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Aplicações</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <NavMain items={data.navMain} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
+      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
+      <SidebarRail />
     </Sidebar>
-  )
+  );
 }
