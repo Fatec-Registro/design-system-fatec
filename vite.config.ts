@@ -45,12 +45,22 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      input: {
+        index: resolve(__dirname, "src/index.ts"),
+        icons: resolve(__dirname, "src/icons.ts"),
+        "layout/index": resolve(__dirname, "src/layout/index.ts"),
+        "navigation/index": resolve(__dirname, "src/navigation/index.ts"),
+        "form/index": resolve(__dirname, "src/form/index.ts"),
+        "data-display/index": resolve(__dirname, "src/data-display/index.ts"),
+      },
+      external: ["react", "react-dom", "lucide-react"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
         },
+        // Emite arquivos por entrada: index.es.js, icons.es.js, layout/index.es.js, etc.
+        entryFileNames: "[name].[format].js",
         // Garante que o CSS seja gerado como styles.css
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.endsWith(".css")) {
