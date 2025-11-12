@@ -2,133 +2,45 @@
 
 import * as React from "react";
 
-import {
-  BookCheck,
-  Megaphone,
-  SquareLibrary,
-  GraduationCap,
-  BadgeCheck,
-  ListTodo,
-  FileBadge,
-  ExternalLinkIcon,
-} from "lucide-react";
-
 import { NavMain } from "@/components/custom/sidebar/nav-main";
+import { Header } from "@/components/custom/sidebar/header";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import type { LucideIcon } from "lucide-react";
 
-// Menu items.
-const items = [
-  {
-    title: "Acamies Hub",
-    url: "#",
-    icon: GraduationCap,
-  },
-  {
-    title: "Anúncios",
-    url: "#",
-    icon: Megaphone,
-  },
-  {
-    title: "Avaliação Integradora",
-    url: "#",
-    icon: BookCheck,
-  },
-  {
-    title: "Biblioteca",
-    url: "#",
-    icon: SquareLibrary,
-  },
-  {
-    title: "Emissão de Certificados",
-    url: "#",
-    icon: BadgeCheck,
-  },
-  {
-    title: "PACE",
-    url: "#",
-    icon: ListTodo,
-  },
-  {
-    title: "QTE",
-    url: "#",
-    icon: FileBadge,
-  },
-];
-
-const data = {
+type SidebarData = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "",
-  },
-  navMain: [
-    {
-      title: "Aplicações",
-      url: "#",
-      icon: GraduationCap,
-      isActive: true,
-      items: [
-        {
-          title: "Academies Hub",
-          url: "#",
-        },
-        {
-          title: "Anúncios",
-          url: "#",
-        },
-        {
-          title: "Avaliação Integradora",
-          url: "#",
-        },
-        {
-          title: "Biblioteca",
-          url: "#",
-        },
-        {
-          title: "Emissão de Certificados",
-          url: "#",
-        },
-        {
-          title: "PACE",
-          url: "#",
-        },
-        {
-          title: "QTE",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Meu Perfil",
-      url: "#",
-      icon: GraduationCap,
-    },
-    {
-      title: "Gerenciar Usuários",
-      url: "#",
-      icon: GraduationCap,
-    },
-    {
-      title: "Sair",
-      url: "#",
-      icon: ExternalLinkIcon,
-    },
-  ],
+    name: string;
+    group: string;
+    avatar: string;
+  };
+  navMain: {
+    title: string;
+    url: string;
+    isActive?: boolean;
+    items?: {
+      icon?: LucideIcon;
+      title: string;
+      url: string;
+    }[];
+  }[];
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ 
+  data,
+  ...props 
+}: React.ComponentProps<typeof Sidebar> & {
+  data: SidebarData;
+}) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader>{/* <TeamSwitcher teams={data.teams} /> */}</SidebarHeader>
+      <Header user={data.user} />
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
       <SidebarRail />
