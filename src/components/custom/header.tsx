@@ -14,7 +14,7 @@ export function Header({ children }: HeaderProps) {
     <header className="flex h-18 shrink-0 items-center justify-between gap-2 border-b px-4 bg-white">
       <SidebarTrigger className="-ml-1" />
       {children}
-      <div className="flex items-center gap-6 md:gap-4 sm:gap2">
+      <div className="flex items-center gap-2 md:gap-4">
         <SearchForm className="w-full sm:ml-auto sm:w-auto" />
         <Popover>
             <PopoverTrigger>
@@ -22,7 +22,7 @@ export function Header({ children }: HeaderProps) {
                 <Bell className="size-4 text-primary" />
             </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80" align="end">
+            <PopoverContent className="w-80 mx-4" align="center">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between border-b pb-2">
                   <h3 className="font-semibold text-lg">Notificações</h3>
