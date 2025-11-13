@@ -13,6 +13,7 @@ import {
   ListTodo,
   FileBadge,
 } from "lucide-react";
+import { Center } from "@/components/custom/center";
 
 const sidebarData = {
   user: {
@@ -90,9 +91,7 @@ export default function Page() {
       <AppSidebar data={sidebarData} />
       <SidebarInset className="bg-muted">
         <Header />
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-4">
-          <div className="bg-white min-h-[100vh] flex-1 rounded-xl md:min-h-min shadow" />
-        </div>
+        <Center />
       </SidebarInset>
     </SidebarProvider>
   );
