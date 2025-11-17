@@ -25,7 +25,6 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
-
   server: {
     host: "0.0.0.0",
     port: 5173,
@@ -33,7 +32,6 @@ export default defineConfig({
       usePolling: true,
     },
   },
-
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
@@ -43,9 +41,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "DesignSystemFatec",
-
       fileName: (format) => `design-system-fatec.${format}.js`,
-
       formats: ["es", "cjs"],
     },
     rollupOptions: {
