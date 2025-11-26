@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/collapsible"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -18,20 +17,35 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
+export type NavItem = {
+  title: string
+  url: string
+  icon?: LucideIcon
+}
+
+export type NavMainItem = {
+  title: string
+  url: string
+  isActive?: boolean
+  items?: NavItem[]
+}
+
+export type NavMainProps = {
+  items: NavMainItem[]
+  /** Callback chamado quando um item do menu é clicado */
+  onSelect?: (item: NavItem, event: React.MouseEvent) => void
+}
+
 export function NavMain({
   items,
-}: {
-  items: {
-    title: string
-    url: string
-    isActive?: boolean
-    items?: {
-      icon?: LucideIcon
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
+  onSelect,
+}: NavMainProps) {
+  const handleClick = (item: NavItem, event: React.MouseEvent) => {
+    if (onSelect) {
+      event.preventDefault()
+      onSelect(item, event)
+    }
+  }
   return (
     <SidebarGroup>
       <SidebarMenu className="flex gap-4 py-4">
@@ -64,7 +78,10 @@ export function NavMain({
                     {item.items?.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton asChild iconSize="lg">
-                          <a href={subItem.url}>
+                          <a 
+                            href={subItem.url}
+                            onClick={(e) => handleClick(subItem, e)}
+                          >
                             {subItem.icon && <subItem.icon />}
                             <span className="text-lg font-medium">{subItem.title}</span>
                           </a>
@@ -79,7 +96,10 @@ export function NavMain({
             // CASO 2: Item SEM subitens - Renderiza link direto sem Collapsible
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild tooltip={item.title}>
-                <a href={item.url}>
+                <a 
+                  href={item.url}
+                  onClick={(e) => handleClick(item, e)}
+                >
                   <span className="text-xl font-light">{item.title}</span>
                 </a>
               </SidebarMenuButton>

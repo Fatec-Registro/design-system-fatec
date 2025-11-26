@@ -1,4 +1,5 @@
-import { AppSidebar } from "@/components/custom/sidebar";
+import { useState } from "react";
+import { AppSidebar, type NavItem } from "@/components/custom/sidebar";
 import { Header } from "@/components/custom/header";
 import {
   SidebarInset,
@@ -80,6 +81,18 @@ const sidebarData = {
 };
 
 export default function Page() {
+  // Estado para controlar qual item está selecionado
+  const [selectedItem, setSelectedItem] = useState<NavItem | null>(null);
+
+  // Callback chamado quando um item do menu é clicado
+  const handleSelect = (item: NavItem) => {
+    setSelectedItem(item);
+    // Aqui você pode adicionar lógica adicional como:
+    // - Navegação com React Router: navigate(item.url)
+    // - Navegação com Next.js: router.push(item.url)
+    // - Qualquer outra ação customizada
+  };
+
   return (
     <SidebarProvider
       style={
@@ -88,10 +101,10 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar data={sidebarData} />
+      <AppSidebar data={sidebarData} onSelect={handleSelect} />
       <SidebarInset className="bg-muted">
         <Header />
-        <Center />
+        <Center selectedItem={selectedItem} />
       </SidebarInset>
     </SidebarProvider>
   );
