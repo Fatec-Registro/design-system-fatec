@@ -6,8 +6,13 @@ const meta = {
   title: "Components/Header",
   component: Header,
   tags: ["autodocs"],
+
   parameters: {
     layout: "fullscreen",
+  },
+
+  argTypes: {
+    children: { control: false },
   },
 
   decorators: [
@@ -25,9 +30,10 @@ export default meta;
 
 type Story = StoryObj<typeof Header>;
 
+// sem children
 export const Default: Story = {};
 
-
+// com children
 export const WithTitle: Story = {
   render: () => (
     <Header>
