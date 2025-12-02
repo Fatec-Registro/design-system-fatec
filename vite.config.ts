@@ -47,11 +47,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, "src/index.ts"),
-        icons: resolve(__dirname, "src/icons.ts"),
-        "layout/index": resolve(__dirname, "src/layout/index.ts"),
-        "navigation/index": resolve(__dirname, "src/navigation/index.ts"),
-        "form/index": resolve(__dirname, "src/form/index.ts"),
-        "data-display/index": resolve(__dirname, "src/data-display/index.ts"),
       },
       external: ["react", "react-dom", "lucide-react"],
       output: {
