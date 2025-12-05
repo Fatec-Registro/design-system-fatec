@@ -3,14 +3,7 @@ import { Popover, PopoverTrigger, Button, Avatar, AvatarImage, AvatarFallback, P
 import { LogOut, User } from "lucide-react";
 
 export default function UserMenu() {
-
-
-const [isOpen, setIsOpen] = React.useState(false)
-
-    React.useEffect(() => {
-    setIsOpen(true)
-    }, [])
-
+  const [isOpen, setIsOpen] = React.useState(false)
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
