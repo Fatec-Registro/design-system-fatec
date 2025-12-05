@@ -58,7 +58,10 @@ const sidebarData = ${JSON.stringify(sidebarData, null, 2)}
     } as React.CSSProperties
   }
 >
-  <AppSidebar data={sidebarData} />
+<AppSidebar data={sidebarData} />
+    <SidebarInset className="bg-muted">
+        ***Conteúdo da página***
+    </SidebarInset>
 </SidebarProvider>
 
         `,
